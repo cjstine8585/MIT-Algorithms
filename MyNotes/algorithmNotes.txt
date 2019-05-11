@@ -1,0 +1,123 @@
+Algorthims:
+
+Course overview:
+	The tranistion from algorithms to computer code
+	Efficient procedures for solving problems on large inputs
+		ex: Human genome, U.S. highway, facebook
+	Efficient procedures for large scale problems
+		- As inputs get larger efficiency becomes a large concern
+	Scalability 
+		- track how algroirthms will do as inputs get larger and larger
+	Classic Data striuctrures
+		- sorting, matching, ect.
+		- real implementations in python
+		- Theory and programming parts
+	
+Content:
+	8 modules
+		- Algorithmic thinking: peak finding
+		- Sorting & trees: event simulation
+		- Hashing: Genome comparison 
+		- Numerics: RSA encryption
+		- Graphs: Rubik's Cube
+		- Shortest paths: Caltech --> MIT
+		- Dynamic Programming: Image compression
+		- Advanced topics: 
+		
+Lecture 1:
+	Algorithm efficiency
+	Analyzing algorithm complexity
+	
+	Peak finder:
+		One-dimensional version:
+			- runs on an array of numbers
+			|a|b|c|d|e|f|g|h|i|
+			 1 2 3 4 5 6 7 8 9
+			- find a peak
+			- Position 2 is a peak if and only if b>=a and b>=c
+			- position 9 is a peak if i >= h 
+			Problem statement: Find a peak if it exists
+			
+			Straight-forward algorithm:
+				- Start from left and walks across
+				
+				|a|b|c|d|e|f|g|h|i|
+				 
+				 a = 1
+				 b = 2
+				 e = n/2  
+				 h = (n-1) 
+				 i = n
+				 
+				 n/2 might be the peak 
+				 if it is then you would look at n/2 elements
+				 worst case complexity: 
+					- O(n)
+					- linear complexity
+					
+				How can we lower the complexity?
+					- Use a binary search 
+						"Divide and conquer" 
+						
+				Writing it out:
+				- recursive algorithm 
+				- look at the left and right in sequence
+				ex: if a[n/2] < a[n/2 - 1] then only look at the left half {1...n/2-1} to look for peak
+					else if a[n/2] < a[n/2+1] then only look at n/2+1...n for peak
+					else n/2 is a peak 
+					- argue that this algorithm is correct: template for writing a proof
+				- Complexity: 
+					T(n) = work that this algorithm does based on input of size 'n'
+					For this algorithm, T(n) = T(n/2) + O(1)
+					Base case: T(1) = O(1)
+					T(n) = O(1) + ... + O(1) = O(log(base 2)n)
+						 ^log(base 2)n times^
+					
+				|a|b|c|d|e|f|g|h|i|
+				 
+				 a = 1
+				 b = 2
+				 d = n/2 - 1
+				 e = n/2
+				 f = n/2 + 1
+				 h = (n-1) 
+				 i = n
+				 
+		Two-Dimensional Version:
+			- 2D array
+			- n rows and m columns
+			- a is a peak if it is >= all adjacent elements
+			
+			Greedy Ascent Algorithm: 
+				- Picks direction and tries to follow that direction in order to find the peak
+				For any given strategy you may end up walking through a large fraction of the elements in the array
+				- Worst case analysis: O(nm) complexity; if n = m: O(n^2) complexity
+			
+			Problem: 2D peak is not on row 'i' 
+			
+			How can we get to something that works?
+			- Pick a middle column 'j=m/2'
+			- fing the global maximum on column j
+			- compare (i, j-1), (i,j), (i, j+1)
+			- pick left columns if (i, j-1)> (i,j) --- simliar for the right
+			- if (i,j) >= (i,j-1) & (i,j+1) it implies that (i,j) is a peak
+				- very similar to previous problems
+				-Solve the new problem with half the number of columns
+				- intuitively correct because it matches the 1D version of the algorithm
+				- When you have a single column find the global maximum and you are done (base case)
+				- Overall complexity of the algorithm 
+					T(n,m) = T(n, m/2) + O(n) <--- max
+					T(n, 1) = O(n) <--- base case
+					T(n,m) = O(n)+...+O(n) = log(base 2)m = O(nlog(base 2)m)
+
+Lecture 2: 
+	Let's learn some algorithms!
+	
+	What is an algorithm?
+		- Way to define computational porcedure for solving some problem
+			input --> alg. --> output
+		- The mathematical analog of a computer program
+		- Figures on lecture notes
+		
+	
+					
